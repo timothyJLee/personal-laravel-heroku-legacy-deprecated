@@ -1,0 +1,63 @@
+
+
+
+laravel new blog
+
+
+mysql -u USERNAME -p    mysql -u root -p
+CREATE DATABASE blog_laravel
+show databases;
+use [db name];
+show tables;
+drop database [database name];
+drop table [table name];
+
+
+php artisan make:migration create_posts_table --table=posts --create
+php artisan make:seeder CreatePostsTableSeeder
+php artisan migrate
+php artisan make:model Post
+db:seed
+php artisan make:controller PostsController
+
+php artisian key:generate
+php artisan make:auth
+php artisan make:seeder CreateUsersTableSeeder
+php artisan migrate
+db:seed
+
+php artisan serve
+
+//php artisan app:name TimsBlog
+
+php artisan make:migration create_comments_table --table=comments --create
+php artisan make:seeder CreateCommentsTableSeeder
+php artisan migrate
+php artisan make:model Comment
+db:seed
+php artisan make:controller CommentsController
+php artisan make:request CommentRequest
+
+
+php artisan make:middleware Owner
+
+app/Http/Kernel.php (ADD)
+'owner' => \App\Http\Middleware\Owner::class,
+
+
+php artisan make:policy PostPolicy
+
+app\Providers\AuthServiceProvider.phpPHP (ADD)
+  'App\Post' => 'App\Policies\PostPolicy',
+
+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------+
+| @@GLOBAL.sql_mode                                                                                                                         |
++-------------------------------------------------------------------------------------------------------------------------------------------+
+| STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION |
++-------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+php artisan make:controller UsersController
